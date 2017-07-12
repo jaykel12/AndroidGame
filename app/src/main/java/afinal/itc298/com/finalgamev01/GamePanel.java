@@ -16,8 +16,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Handler handler;
 
-    //private Point playerPoint;
-
     //constructor
     public GamePanel(Context context){
         super(context);
@@ -28,10 +26,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         handler = new Handler();
 
-        handler.addObject(new Player(550,750,ID.Player));//player object added
-        //playerPoint = new Point(150, 150);//no idea how this works
+        //add player object
+        handler.addObject(new Player(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Player));
 
-
+        //set player movement listener
+        this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));
 
 
         setFocusable(true);
@@ -65,22 +64,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        switch(event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                //player movement CODE HERE
-                //playerPoint.set((int)event.getX(), (int)event.getY());
-
-        }
-
-        return true;
-        //return super.onTouchEvent(event);
-    }
 
     public void tick(){//update game
         handler.tick();
+        //player.tick(playerPoint);
     }
 
     @Override
@@ -90,6 +77,16 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawColor(Color.WHITE);//background color
 
         handler.render(canvas);//draw graphics
+    }
+
+    //clamps a float variable between a max and a min
+    public static float clamp(float var, float min, float max){
+        if(var >= max)
+            return var = max;
+        else if(var <= min)
+            return var = min;
+        else
+            return var;
     }
 
 }
