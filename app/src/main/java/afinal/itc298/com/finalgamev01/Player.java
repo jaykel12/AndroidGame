@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.constraint.solver.widgets.Rectangle;
+import android.util.Log;
 
 /**
  * Created by jayke on 7/11/2017.
@@ -14,7 +15,7 @@ import android.support.constraint.solver.widgets.Rectangle;
 public class Player extends GameObject {
 
     Paint paint = new Paint();
-    Rect rect = new Rect(10,10,100,100);
+    Rect rect = new Rect(0,0,100,100);
     Handler handler;
 
     public Player(int x, int y, ID id, Handler handler) {
@@ -46,7 +47,7 @@ public class Player extends GameObject {
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ID.BasicEnemy){
                 if(getBounds().intersect(tempObject.getBounds())){
-                    //tempObject.velX = velX*-1;//WORK ON COLLISION, HALF WORKS
+                    Log.d("Hit:", "GOT HIT!");
                 }
             }
         }
@@ -56,7 +57,7 @@ public class Player extends GameObject {
     public void render(Canvas canvas) {
         //fill
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.MAGENTA);
+        paint.setColor(Color.WHITE);
         canvas.drawRect(rect, paint);
 
         //border
@@ -67,8 +68,5 @@ public class Player extends GameObject {
         //position middle of square
         rect.set((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
 
-
-        //g.setColor(Color.white);
-        //g.fillRect(x, y, 32, 32);
     }
 }

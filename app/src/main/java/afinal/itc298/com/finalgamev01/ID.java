@@ -6,5 +6,5 @@ package afinal.itc298.com.finalgamev01;
 
 public enum ID {
     Player(),
-    Enemy();
+    BasicEnemy();
 }

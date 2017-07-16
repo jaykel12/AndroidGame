@@ -1,6 +1,8 @@
 package afinal.itc298.com.finalgamev01;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.support.constraint.solver.widgets.Rectangle;
 
 /**
  * Created by jayke on 7/11/2017.
@@ -20,6 +22,7 @@ public abstract class GameObject {
 
     public abstract void tick();
     public abstract void render(Canvas canvas);
+    public abstract Rect getBounds();
 
     public void setX(int x){
         this.x = x;

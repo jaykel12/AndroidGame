@@ -15,6 +15,7 @@ import android.view.SurfaceView;
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Handler handler;
+    private HUD hud;
 
     //constructor
     public GamePanel(Context context){
@@ -25,9 +26,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
 
         handler = new Handler();
+        hud = new HUD();
 
         //add player object
-        handler.addObject(new Player(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Player));
+        handler.addObject(new Player(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Player, handler));
+        //add enemy object
+        handler.addObject(new BasicEnemy(23, 23,ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(Constants.SCREEN_WIDTH-100, 23,ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(23, Constants.SCREEN_HEIGHT-100,ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(Constants.SCREEN_WIDTH-100, Constants.SCREEN_HEIGHT-100,ID.BasicEnemy, handler));
 
         //set player movement listener
         this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));
@@ -67,16 +74,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     public void tick(){//update game
         handler.tick();
-        //player.tick(playerPoint);
+        hud.tick();
     }
 
     @Override
     public void draw(Canvas canvas){//draws the game
         super.draw(canvas);
 
-        canvas.drawColor(Color.WHITE);//background color
+        canvas.drawColor(Color.BLACK);//background color
 
         handler.render(canvas);//draw graphics
+
+        hud.render(canvas);
     }
 
     //clamps a float variable between a max and a min
