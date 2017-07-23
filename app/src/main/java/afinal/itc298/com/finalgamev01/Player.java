@@ -48,6 +48,7 @@ public class Player extends GameObject {
             if(tempObject.getId() == ID.BasicEnemy){
                 if(getBounds().intersect(tempObject.getBounds())){
                     Log.d("Hit:", "GOT HIT!");
+                    HUD.HEALTH-=2;
                 }
             }
         }
