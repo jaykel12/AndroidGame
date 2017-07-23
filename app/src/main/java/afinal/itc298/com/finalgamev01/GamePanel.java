@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.Random;
+
 /**
  * Created by jayke on 7/11/2017.
  */
@@ -16,6 +18,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Handler handler;
     private HUD hud;
+    private  Spawn spawner;
+    private Random r = new Random();
 
     //constructor
     public GamePanel(Context context){
@@ -28,16 +32,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         handler = new Handler();
         hud = new HUD();
 
+        //add starfield
+        for(int i = 0; i < 200; i++){
+            handler.addObject(new Starfield(r.nextInt(Constants.SCREEN_WIDTH),r.nextInt(Constants.SCREEN_HEIGHT), ID.Starfield, handler));
+        }
         //add player object
         handler.addObject(new Player(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Player, handler));
-        //add enemy object
-        handler.addObject(new BasicEnemy(23, 23,ID.BasicEnemy, handler));
-        handler.addObject(new BasicEnemy(Constants.SCREEN_WIDTH-100, 23,ID.BasicEnemy, handler));
-        handler.addObject(new BasicEnemy(23, Constants.SCREEN_HEIGHT-100,ID.BasicEnemy, handler));
-        handler.addObject(new BasicEnemy(Constants.SCREEN_WIDTH-100, Constants.SCREEN_HEIGHT-100,ID.BasicEnemy, handler));
 
         //set player movement listener
         this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));
+
+        //set spawner
+        spawner = new Spawn(handler, hud);
 
 
         setFocusable(true);
@@ -74,7 +80,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     public void tick(){//update game
         handler.tick();
+        spawner.tick();
         hud.tick();
+
+
     }
 
     @Override
