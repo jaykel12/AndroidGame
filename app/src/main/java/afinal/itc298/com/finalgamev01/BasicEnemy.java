@@ -50,10 +50,6 @@ public class BasicEnemy extends GameObject {
         paint.setColor(Color.RED);
         canvas.drawRect(rect, paint);
 
-        //border
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.BLACK);
-        canvas.drawRect(rect, paint);
 
         //sets position of rect, middle point is the center of rectangle
         rect.set((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));

@@ -37,6 +37,7 @@ public class Player extends GameObject {
         if(x < 0) x = Constants.SCREEN_WIDTH ;//if traveling to the left end of the screen appear on the right end
         if(x > Constants.SCREEN_WIDTH ) x = 0;//if traveling to the right end of the screen appear on the left end
         y = GamePanel.clamp(y, 50, Constants.SCREEN_HEIGHT-50);//cannot go beyond top and bottom border
+        //handler.addObject(new Trail((int)x,(int)y,ID.Trail,.15f, handler));
 
         collision();
 

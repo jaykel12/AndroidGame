@@ -7,6 +7,20 @@ package afinal.itc298.com.finalgamev01;
 public enum ID {
     Player(),
     BasicEnemy(),
+    FastEnemy(),
+    FastEnemyLR,
+    SmartEnemy(),
+    Trail(),
+    EnemyBoss,
+    EnemyBoss2,
+    EnemyBoss3,
+    EnemyBullet,
+    EnemyBulletRandom,
+    EnemyBulletSmart,
+    MenuParticle,
+    HPItem,
     Starfield,
-    Trail;
+    SlowItem,
+    SlowedEnemy,
+    EnemyBossMini, Explosion
 }
