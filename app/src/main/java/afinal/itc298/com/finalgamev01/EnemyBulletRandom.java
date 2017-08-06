@@ -4,26 +4,28 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.constraint.solver.widgets.Rectangle;
+
+import java.util.Random;
 
 /**
  * Created by jayke on 7/12/2017.
  */
 
-public class BasicEnemy extends GameObject {
+public class EnemyBulletRandom extends GameObject {
 
     private Paint paint = new Paint();
-    private Rect rect = new Rect(0,0,75,75);
+    private Rect rect = new Rect(0,0,25,25);
     private Handler handler;
+    private Random r = new Random();
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    public EnemyBulletRandom(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX = 16;
-        velY = 32;
+        velX = (r.nextInt(16 - -16) + -16);//moves in random directions and velocity
+        velY = (r.nextInt(16 - -16) + -16);
 
-        GamePanel.clamp(velX, 0, 16);
-        GamePanel.clamp(velY, 0, 32);
+        if(velX == 0) velX = 16;//no zero value, sets to 1 instead
+        if(velY == 0) velY = 16;//no zero value,sets to 1 instead
 
     }
 
@@ -36,8 +38,10 @@ public class BasicEnemy extends GameObject {
         x+=velX;
         y+=velY;
 
-        if(y <= 39 || y >= Constants.SCREEN_HEIGHT - 39) velY *= -1;
-        if(x <= 39 || x >= Constants.SCREEN_WIDTH -39) velX *= -1;
+        if(x <= 0) handler.removeObject(this);//removes bullet
+        if(x >= Constants.SCREEN_WIDTH ) handler.removeObject(this);
+        if(y <= 0) handler.removeObject(this);
+        if(y>= Constants.SCREEN_HEIGHT) handler.removeObject(this);
 
     }
 

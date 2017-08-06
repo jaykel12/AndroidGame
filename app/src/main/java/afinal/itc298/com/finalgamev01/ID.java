@@ -5,6 +5,7 @@ package afinal.itc298.com.finalgamev01;
  */
 
 public enum ID {
+    Asteroid(),
     Player(),
     BasicEnemy(),
     FastEnemy(),
@@ -17,6 +18,7 @@ public enum ID {
     EnemyBullet,
     EnemyBulletRandom,
     EnemyBulletSmart,
+    EnemyBulletSpread,
     MenuParticle,
     HPItem,
     Starfield,

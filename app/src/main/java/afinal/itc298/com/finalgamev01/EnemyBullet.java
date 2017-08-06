@@ -4,22 +4,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.constraint.solver.widgets.Rectangle;
+
+import java.util.Random;
 
 /**
  * Created by jayke on 7/12/2017.
  */
 
-public class BasicEnemy extends GameObject {
+public class EnemyBullet extends GameObject {
 
     private Paint paint = new Paint();
-    private Rect rect = new Rect(0,0,75,75);
+    private Rect rect = new Rect(0,0,25,25);
     private Handler handler;
+    Random r = new Random();
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    public EnemyBullet(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX = 16;
+        velX = r.nextInt(16 + 1 + 16) - 16;//random velX between -5 and 5
         velY = 32;
 
         GamePanel.clamp(velX, 0, 16);
@@ -36,8 +38,7 @@ public class BasicEnemy extends GameObject {
         x+=velX;
         y+=velY;
 
-        if(y <= 39 || y >= Constants.SCREEN_HEIGHT - 39) velY *= -1;
-        if(x <= 39 || x >= Constants.SCREEN_WIDTH -39) velX *= -1;
+        if(y >= Constants.SCREEN_HEIGHT) handler.removeObject(this);
 
     }
 

@@ -4,26 +4,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.constraint.solver.widgets.Rectangle;
 
 /**
  * Created by jayke on 7/12/2017.
  */
 
-public class BasicEnemy extends GameObject {
+public class Asteroid extends GameObject {
 
     private Paint paint = new Paint();
-    private Rect rect = new Rect(0,0,75,75);
+    private Rect rect = new Rect(0,0,200,200);
     private Handler handler;
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    public Asteroid(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX = 16;
-        velY = 32;
+        velX = 0;
+        velY = 16;
 
-        GamePanel.clamp(velX, 0, 16);
-        GamePanel.clamp(velY, 0, 32);
+        GamePanel.clamp(velY, 0, 16);
 
     }
 
@@ -36,8 +34,7 @@ public class BasicEnemy extends GameObject {
         x+=velX;
         y+=velY;
 
-        if(y <= 39 || y >= Constants.SCREEN_HEIGHT - 39) velY *= -1;
-        if(x <= 39 || x >= Constants.SCREEN_WIDTH -39) velX *= -1;
+        if(y+200 >= Constants.SCREEN_HEIGHT + 500) handler.removeObject(this);
 
     }
 
@@ -47,7 +44,7 @@ public class BasicEnemy extends GameObject {
 
         //fill
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GRAY);
         canvas.drawRect(rect, paint);
 
 

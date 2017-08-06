@@ -50,10 +50,10 @@ public class Handler {
                 }
                 addObject(new Explosion((int)tempObject.getX(), (int)tempObject.getY(), ID.Explosion, this));//create an explosion effect at death
                 */i--;//for some reason it skips every other iteration of object in the linked list(note)
-            }else if(/*Game.gameState == STATE.End &&*/ tempObject.getId() != ID.Starfield){//removes all objects when game ends except starfield
-                removeObject(tempObject);
-                i--;
-            }
+            }//else if(/*Game.gameState == STATE.End &&*/ tempObject.getId() != ID.Starfield){//removes all objects when game ends except starfield
+               // removeObject(tempObject);
+               // i--;
+           // }
         }clearing = false;
     }
 

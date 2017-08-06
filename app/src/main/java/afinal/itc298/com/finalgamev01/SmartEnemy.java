@@ -4,26 +4,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.constraint.solver.widgets.Rectangle;
 
 /**
  * Created by jayke on 7/12/2017.
  */
 
-public class BasicEnemy extends GameObject {
+public class SmartEnemy extends GameObject {
 
     private Paint paint = new Paint();
     private Rect rect = new Rect(0,0,75,75);
     private Handler handler;
+    private GameObject player;
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    public SmartEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX = 16;
-        velY = 32;
-
-        GamePanel.clamp(velX, 0, 16);
-        GamePanel.clamp(velY, 0, 32);
+        for(int i = 0; i < handler.object.size(); i++ ){
+            if(handler.object.get(i).getId() == ID.Player) player = handler.object.get(i);
+        }
 
     }
 
@@ -36,8 +34,13 @@ public class BasicEnemy extends GameObject {
         x+=velX;
         y+=velY;
 
-        if(y <= 39 || y >= Constants.SCREEN_HEIGHT - 39) velY *= -1;
-        if(x <= 39 || x >= Constants.SCREEN_WIDTH -39) velX *= -1;
+        float diffX = x - player.getX() - 8;//distance between player and enemy x-axis
+        float diffY = y - player.getY() - 8;//distance between player and enemy y-axis
+        //distance between player and enemy (distance formula)
+        float distance = (float) Math.sqrt((x-player.getX())*(x-player.getX())+(y-player.getY())*(y-player.getY()));
+
+        velX = ((-10 / distance) * diffX);//gradually matches player x position
+        velY = ((-10 / distance) * diffY);//gradually matches player y position
 
     }
 
@@ -47,7 +50,7 @@ public class BasicEnemy extends GameObject {
 
         //fill
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GREEN);
         canvas.drawRect(rect, paint);
 
 

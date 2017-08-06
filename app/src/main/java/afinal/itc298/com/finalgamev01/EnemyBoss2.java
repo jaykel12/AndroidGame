@@ -4,26 +4,28 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.constraint.solver.widgets.Rectangle;
+
+import java.util.Random;
 
 /**
  * Created by jayke on 7/12/2017.
  */
 
-public class BasicEnemy extends GameObject {
+public class EnemyBoss2 extends GameObject {
 
     private Paint paint = new Paint();
-    private Rect rect = new Rect(0,0,75,75);
+    private Rect rect = new Rect(0,0,250,250);
     private Handler handler;
+    Random r = new Random();
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    private int timer = 45;
+    private int timer2 = 50;
+
+    public EnemyBoss2(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX = 16;
-        velY = 32;
-
-        GamePanel.clamp(velX, 0, 16);
-        GamePanel.clamp(velY, 0, 32);
+        velX = 0;
+        velY = 30;
 
     }
 
@@ -36,9 +38,14 @@ public class BasicEnemy extends GameObject {
         x+=velX;
         y+=velY;
 
-        if(y <= 39 || y >= Constants.SCREEN_HEIGHT - 39) velY *= -1;
-        if(x <= 39 || x >= Constants.SCREEN_WIDTH -39) velX *= -1;
+        if(timer <= 0) velY = 0;//when timer is less than 0, bossEnemy will stop moving
+        else timer--;
 
+        if(timer <= 0) timer2--;
+        if(timer2 <= 0){
+            int spawn = r.nextInt(5);
+            if(spawn == 0) handler.addObject(new EnemyBulletRandom((int) x , (int) y, ID.EnemyBulletRandom, handler));
+        }
     }
 
     @Override
@@ -47,7 +54,7 @@ public class BasicEnemy extends GameObject {
 
         //fill
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.MAGENTA);
         canvas.drawRect(rect, paint);
 
 

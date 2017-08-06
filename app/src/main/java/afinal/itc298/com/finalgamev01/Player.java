@@ -46,7 +46,12 @@ public class Player extends GameObject {
     private void collision(){
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
-            if(tempObject.getId() == ID.BasicEnemy){
+            if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy ||
+                    tempObject.getId() == ID.Asteroid || tempObject.getId() == ID.EnemyBoss ||
+                    tempObject.getId() == ID.EnemyBullet || tempObject.getId() == ID.SmartEnemy ||
+                    tempObject.getId() == ID.EnemyBoss2 || tempObject.getId() == ID.EnemyBulletRandom ||
+                    tempObject.getId() == ID.EnemyBulletSpread || tempObject.getId() == ID.EnemyBossMini||
+                    tempObject.getId() == ID.EnemyBoss3 || tempObject.getId() == ID.EnemyBulletSmart){
                 if(getBounds().intersect(tempObject.getBounds())){
                     Log.d("Hit:", "GOT HIT!");
                     HUD.HEALTH-=2;
