@@ -18,7 +18,7 @@ public class EnemyBoss extends GameObject {
     private Handler handler;
     Random r = new Random();
 
-    private int timer = 45;
+    private int timer = 40;
     private int timer2 = 50;
 
     public EnemyBoss(int x, int y, ID id, Handler handler) {
