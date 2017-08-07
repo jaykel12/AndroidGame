@@ -25,7 +25,7 @@ public class HUD {
 
     private int scoreKeep = 0;//keeps track of score gained at each level
 
-    private int timer = 500;
+    private int timer = 85;
 
     public void tick(){
         HEALTH = (int) GamePanel.clamp(HEALTH, 0, 100);//clamps health between 0 and 100
@@ -46,6 +46,23 @@ public class HUD {
         paint.setTextSize(50);//setting text size
         canvas.drawText("Score: " + score,50, 150, paint );
         canvas.drawText("Level: " + level,50, 200, paint );
+
+        if(level == levelCount){//displays and removes level display
+            timer--;
+            paint.setTextSize(100);//setting text size
+
+            if(level == 3 || level == 6){//if boss level
+                canvas.drawText("BOSS LEVEL", Constants.SCREEN_WIDTH / 2 - 150, Constants.SCREEN_HEIGHT / 3, paint);
+            }else if(level == 9){
+                canvas.drawText("FINAL BOSS", Constants.SCREEN_WIDTH / 2 - 150, Constants.SCREEN_HEIGHT / 3, paint);
+            }else {
+                canvas.drawText("LEVEL " + level, Constants.SCREEN_WIDTH / 2 - 150, Constants.SCREEN_HEIGHT / 3, paint);
+            }
+            if(timer == 0){
+                levelCount++;
+                timer = 85;
+            }
+        }
     }
     public void setScore(int score){
         HUD.score = score;
