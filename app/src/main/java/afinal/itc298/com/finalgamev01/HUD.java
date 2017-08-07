@@ -52,9 +52,9 @@ public class HUD {
             paint.setTextSize(100);//setting text size
 
             if(level == 3 || level == 6){//if boss level
-                canvas.drawText("BOSS LEVEL", Constants.SCREEN_WIDTH / 2 - 150, Constants.SCREEN_HEIGHT / 3, paint);
+                canvas.drawText("BOSS LEVEL", Constants.SCREEN_WIDTH / 2 - 250, Constants.SCREEN_HEIGHT / 3, paint);
             }else if(level == 9){
-                canvas.drawText("FINAL BOSS", Constants.SCREEN_WIDTH / 2 - 150, Constants.SCREEN_HEIGHT / 3, paint);
+                canvas.drawText("FINAL BOSS", Constants.SCREEN_WIDTH / 2 - 250, Constants.SCREEN_HEIGHT / 3, paint);
             }else {
                 canvas.drawText("LEVEL " + level, Constants.SCREEN_WIDTH / 2 - 150, Constants.SCREEN_HEIGHT / 3, paint);
             }
