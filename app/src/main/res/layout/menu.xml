@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    >
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Start"
+        android:textSize="30sp"
+        android:alpha="0.6"
+       />
+
+    <Button
+        android:id="@+id/buttonHelp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Help"
+        android:textSize="30sp"
+        android:alpha="0.6"
+        />
+
+    <Button
+        android:id="@+id/buttonQuit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Quit"
+        android:textSize="30sp"
+        android:alpha="0.6"
+         />
+
+    <TextView
+        android:id="@+id/titleScores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="High Scores"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/highScores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
