@@ -50,14 +50,14 @@ public class EnemyBoss3 extends GameObject {
 
             velY = GamePanel.clamp(velY, -64, 64);//clamps velocity of X so it does not got below -10 or above 10
 
-            int spawn = r.nextInt(30);
+            int spawn = r.nextInt(20);
             if(spawn == 0) handler.addObject(new EnemyBulletSmart((int) x, (int) y , ID.EnemyBulletSmart, handler));
 
 
         }
 
         //f(y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;//if object hits ceiling or floor, reverse velocity
-        if(y <= 0 || y >= Constants.SCREEN_HEIGHT - 125) velY *= -1;//if object hits sides, reverse velocity
+        if(y <= 55 || y >= Constants.SCREEN_HEIGHT - 55) velY *= -1;//if object hits sides, reverse velocity
 
     }
 

@@ -29,8 +29,8 @@ public class Starfield extends GameObject{
 		x += velX;
 		y += velY;
 		
-		if(y >= Constants.SCREEN_HEIGHT - 32){
-			x=r.nextInt(Constants.SCREEN_HEIGHT + 1 + Constants.SCREEN_HEIGHT+75) - Constants.SCREEN_HEIGHT+75;
+		if(y >= Constants.SCREEN_WIDTH - 32){
+			x = r.nextInt(Constants.SCREEN_WIDTH + 1 + Constants.SCREEN_WIDTH+75) - Constants.SCREEN_WIDTH+75;
 			y=0;
 		}
 

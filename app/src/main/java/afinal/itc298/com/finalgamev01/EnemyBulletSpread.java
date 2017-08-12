@@ -48,7 +48,7 @@ public class EnemyBulletSpread extends GameObject {
         if(x >= Constants.SCREEN_WIDTH) handler.removeObject(this);//removes bullet
 
         //f(y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;//if object hits ceiling or floor, reverse velocity
-        if(y <= 0 || y >= Constants.SCREEN_HEIGHT ) velY *= -1;//if object hits sides, reverse velocity
+        if(y <= 13 || y >= Constants.SCREEN_HEIGHT ) velY *= -1;//if object hits sides, reverse velocity
         //handler.addObject(new Trail((int)x,(int) y, ID.Trail, Color.red, 64, 64, 0.008f,handler));
 
         if(x <= 0) handler.removeObject(this);//removes bullet

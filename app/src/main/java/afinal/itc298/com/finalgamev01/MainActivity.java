@@ -26,4 +26,14 @@ public class MainActivity extends Activity {
         setContentView(new GamePanel(this));
 
     }
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+    }
 }

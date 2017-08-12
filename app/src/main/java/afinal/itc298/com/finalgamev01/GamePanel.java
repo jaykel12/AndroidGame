@@ -20,6 +20,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private HUD hud;
     private  Spawn spawner;
     private Random r = new Random();
+    public static boolean paused = false;
 
     //constructor
     public GamePanel(Context context){
@@ -66,7 +67,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder holder){
         boolean retry = true;
-        while(true){//stop current thread
+        while(retry){//stop current thread
             try{
                 thread.setRunning(false);//stop game loop
                 thread.join();//finish tread, then terminate
@@ -79,10 +80,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
     public void tick(){//update game
-        handler.tick();
-        spawner.tick();
-        hud.tick();
-
+       if(paused == false) {
+           handler.tick();
+           spawner.tick();
+           hud.tick();
+       }
 
     }
 

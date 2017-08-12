@@ -46,15 +46,26 @@ public class Player extends GameObject {
     private void collision(){
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
-            if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy ||
+            if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy || tempObject.getId() == ID.FastEnemyLR ||
                     tempObject.getId() == ID.Asteroid || tempObject.getId() == ID.EnemyBoss ||
                     tempObject.getId() == ID.EnemyBullet || tempObject.getId() == ID.SmartEnemy ||
                     tempObject.getId() == ID.EnemyBoss2 || tempObject.getId() == ID.EnemyBulletRandom ||
                     tempObject.getId() == ID.EnemyBulletSpread || tempObject.getId() == ID.EnemyBossMini||
-                    tempObject.getId() == ID.EnemyBoss3 || tempObject.getId() == ID.EnemyBulletSmart){
+                    tempObject.getId() == ID.EnemyBoss3 || tempObject.getId() == ID.EnemyBulletSmart ||
+                    tempObject.getId() == ID.HPItem ){
                 if(getBounds().intersect(tempObject.getBounds())){
                     Log.d("Hit:", "GOT HIT!");
                     HUD.HEALTH-=2;
+
+                    if(tempObject.getId() == ID.EnemyBullet || tempObject.getId() == ID.EnemyBulletSmart
+                            || tempObject.getId() == ID.EnemyBulletSpread|| tempObject.getId() == ID.EnemyBulletRandom){
+                        HUD.HEALTH-=4;
+                        handler.removeObject(tempObject);
+                    }
+                    if(tempObject.getId() == ID.HPItem){
+                        HUD.HEALTH+=15;
+                        handler.removeObject(tempObject);
+                    }
                 }
             }
         }

@@ -35,8 +35,8 @@ public class FastEnemyLR extends GameObject {
         x+=velX;
         y+=velY;
 
-        if(y <= 0 || y >= Constants.SCREEN_HEIGHT) velY *= -1;
-        if(x <= 0 || x >= Constants.SCREEN_WIDTH -25 ) velX *= -1;
+        if(y <= 25 || y >= Constants.SCREEN_HEIGHT - 25) velY *= -1;
+        if(x <= 25 || x >= Constants.SCREEN_WIDTH -25 ) velX *= -1;
 
     }
 
