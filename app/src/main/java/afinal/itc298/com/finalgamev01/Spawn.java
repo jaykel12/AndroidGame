@@ -1,5 +1,7 @@
 package afinal.itc298.com.finalgamev01;
 
+import android.graphics.Bitmap;
+
 import java.util.Random;
 
 /**
@@ -15,11 +17,15 @@ public class Spawn {
     private Random r = new Random();
     private int x = r.nextInt(Constants.SCREEN_WIDTH-60);
     private int y = r.nextInt(Constants.SCREEN_HEIGHT-60);
+    private Bitmap bmp;
+    private Bitmap bmp2;
 
 
-    public Spawn(Handler handler, HUD hud){
+    public Spawn(Handler handler, HUD hud, Bitmap bmp, Bitmap bmp2){
         this.handler = handler;
         this.hud = hud;
+        this.bmp = bmp;
+        this.bmp2 = bmp2;
 
     }
 
@@ -55,7 +61,7 @@ public class Spawn {
                 handler.clearEnemies();
             }
             int spawn = r.nextInt(20);
-            if(spawn == 0)handler.addObject(new Asteroid((r.nextInt(Constants.SCREEN_WIDTH)), -150, ID.Asteroid, handler));
+            if(spawn == 0)handler.addObject(new Asteroid((r.nextInt(Constants.SCREEN_WIDTH)), -150, ID.Asteroid, handler, bmp));
             if(hud.getScoreKeep() == 100){
                 handler.addObject(new FastEnemy(Constants.SCREEN_WIDTH -26,0, ID.FastEnemy, handler));
                 handler.addObject(new FastEnemy(26,0, ID.FastEnemy, handler));
@@ -69,7 +75,7 @@ public class Spawn {
                 handler.clearEnemies();
             }
             if(hud.getScoreKeep() == 50){
-                handler.addObject(new EnemyBoss((Constants.SCREEN_WIDTH/2), -500, ID.EnemyBoss, handler));
+                handler.addObject(new EnemyBoss((Constants.SCREEN_WIDTH/2), -500, ID.EnemyBoss, handler, bmp2));
             }
         }else if(hud.getLevel() == 4){
             if(hud.getScoreKeep()>= 650) {
@@ -95,7 +101,7 @@ public class Spawn {
                 handler.clearEnemies();
             }
             int spawn = r.nextInt(15);
-            if(spawn == 0)handler.addObject(new Asteroid((r.nextInt(Constants.SCREEN_WIDTH)), -150, ID.Asteroid, handler));
+            if(spawn == 0)handler.addObject(new Asteroid((r.nextInt(Constants.SCREEN_WIDTH)), -150, ID.Asteroid, handler, bmp));
             if(hud.getScoreKeep() == 100){
                 handler.addObject(new FastEnemyLR(Constants.SCREEN_WIDTH -26,0, ID.FastEnemyLR, handler));
                 handler.addObject(new FastEnemyLR(26,0, ID.FastEnemyLR, handler));
@@ -158,7 +164,7 @@ public class Spawn {
             }
         }else if(hud.getLevel() == 10){
             int spawn = r.nextInt(30);
-            if(spawn == 0)handler.addObject(new Asteroid((r.nextInt(Constants.SCREEN_WIDTH)), -150, ID.Asteroid, handler));
+            if(spawn == 0)handler.addObject(new Asteroid((r.nextInt(Constants.SCREEN_WIDTH)), -150, ID.Asteroid, handler, bmp));//after
         }
 
     }

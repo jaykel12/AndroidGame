@@ -24,6 +24,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Random r = new Random();
     public static boolean paused = false;
     private Bitmap bmpPlayer;
+    private Bitmap bmpAsteroid;
+    private Bitmap bmpEnemyBoss;
+    private Bitmap bmpFastEnemy;
 
     //constructor
     public GamePanel(Context context){
@@ -32,6 +35,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
 
         thread = new MainThread(getHolder(), this);
+
 
         handler = new Handler();
         hud = new HUD();
@@ -47,8 +51,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         //set player movement listener
         this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));
 
+        //set enemy and asteroids
+        bmpAsteroid = BitmapFactory.decodeResource(getResources(), R.drawable.enemies);
+        handler.addObject(new Asteroid(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Asteroid, handler,bmpAsteroid));
+
+        //bmpFastEnemy = BitmapFactory.decodeResource(getResources(), R.drawable.enemy_uboss3);
+        //handler.addObject(new Asteroid(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.FastEnemy, handler,bmpFastEnemy));
+
+        //set enemy boss
+        bmpEnemyBoss = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_sheet1);
+        handler.addObject(new EnemyBoss(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.EnemyBoss, handler, bmpEnemyBoss));
+
         //set spawner
-        spawner = new Spawn(handler, hud);
+        spawner = new Spawn(handler, hud, bmpAsteroid, bmpEnemyBoss);
 
 
         setFocusable(true);
