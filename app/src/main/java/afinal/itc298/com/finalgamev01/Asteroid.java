@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import java.util.Random;
+
 /**
  * Created by jayke on 7/12/2017.
  */
@@ -15,6 +17,7 @@ public class Asteroid extends GameObject {
     Paint paint = new Paint();
     Rect rect = new Rect(0,0,200,200);
     Handler handler;
+    Random r = new Random();
     private Bitmap bmp;
     private int srcX, srcY;
     private int width,height;
@@ -29,6 +32,20 @@ public class Asteroid extends GameObject {
         this.height = bmp.getHeight() / BMP_ROWS;
         velX = 0;
         velY = 16;
+
+        int spawn = r.nextInt(3);
+        switch(spawn){
+
+            case 0:
+                srcX = 0 * width;
+                srcY = 0 * height;
+            case 1:
+                srcX = 1 * width;
+                srcY = 0 * height;
+            case 2:
+                srcX = 2 * width;
+                srcY = 0 * height;
+        }
 
         GamePanel.clamp(velY, 0, 16);
 
@@ -50,8 +67,8 @@ public class Asteroid extends GameObject {
     @Override
     public void render(Canvas canvas) {
 
-        srcX = 1 * width;
-        srcY = 0 * height;
+        //srcX = 1 * width;
+        //srcY = 0 * height;
 
         Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);//getting section of sprite image
         Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));

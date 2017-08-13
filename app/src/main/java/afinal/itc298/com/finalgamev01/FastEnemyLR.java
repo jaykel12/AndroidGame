@@ -1,5 +1,6 @@
 package afinal.itc298.com.finalgamev01;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,13 +12,21 @@ import android.graphics.Rect;
 
 public class FastEnemyLR extends GameObject {
 
-    private Paint paint = new Paint();
-    private Rect rect = new Rect(0,0,50,50);
-    private Handler handler;
+    Paint paint = new Paint();
+    Rect rect = new Rect(0,0,50,50);
+    Handler handler;
+    private Bitmap bmp;
+    private int srcX, srcY;
+    private int width,height;
+    private static final int BMP_ROWS = 1;
+    private static final int BMP_COLUMNS = 6;
 
-    public FastEnemyLR(int x, int y, ID id, Handler handler) {
+    public FastEnemyLR(int x, int y, ID id, Handler handler, Bitmap bmp) {
         super(x, y, id);
         this.handler = handler;
+        this.bmp = bmp;
+        this.width = bmp.getWidth() / BMP_COLUMNS;
+        this.height = bmp.getHeight() / BMP_ROWS;
         velX = 64;
         velY = 32;
 
@@ -43,11 +52,18 @@ public class FastEnemyLR extends GameObject {
     @Override
     public void render(Canvas canvas) {
 
+        srcX = 1 * width;
+        srcY = 0 * height;
+
+        Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);//getting section of sprite image
+        Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
+
+        canvas.drawBitmap(bmp,src,dst, null);
 
         //fill
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.CYAN);
-        canvas.drawRect(rect, paint);
+        //paint.setStyle(Paint.Style.FILL);
+        //paint.setColor(Color.CYAN);
+        //canvas.drawRect(rect, paint);
 
 
         //sets position of rect, middle point is the center of rectangle
