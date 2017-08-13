@@ -26,8 +26,8 @@ public class Spawn {
     public void tick(){
         hud.setScoreKeep(hud.getScoreKeep() + 1);//+1 each tick (the score for that level)
 
-        GamePanel.clamp(x,100,Constants.SCREEN_WIDTH-60);
-        GamePanel.clamp(y,100,Constants.SCREEN_HEIGHT-60);
+        GamePanel.clamp(x,150,Constants.SCREEN_WIDTH-60);
+        GamePanel.clamp(y,150,Constants.SCREEN_HEIGHT-60);
 
         int spawnHP = r.nextInt(75);
         if(spawnHP == 0)handler.addObject(new HPItem((r.nextInt(Constants.SCREEN_WIDTH)), (-50), ID.HPItem, handler));

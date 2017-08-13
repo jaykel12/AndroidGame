@@ -1,6 +1,8 @@
 package afinal.itc298.com.finalgamev01;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -21,6 +23,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private  Spawn spawner;
     private Random r = new Random();
     public static boolean paused = false;
+    private Bitmap bmpPlayer;
 
     //constructor
     public GamePanel(Context context){
@@ -38,7 +41,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             handler.addObject(new Starfield(r.nextInt(Constants.SCREEN_WIDTH),r.nextInt(Constants.SCREEN_HEIGHT), ID.Starfield, handler));
         }
         //add player object
-        handler.addObject(new Player(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Player, handler));
+        bmpPlayer = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
+        handler.addObject(new Player(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2,ID.Player, handler,bmpPlayer));
 
         //set player movement listener
         this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));

@@ -1,5 +1,7 @@
 package afinal.itc298.com.finalgamev01;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,11 +19,19 @@ public class Player extends GameObject {
     Paint paint = new Paint();
     Rect rect = new Rect(0,0,100,100);
     Handler handler;
+    private Bitmap bmp;
+    private int width,height;
+    private static final int BMP_ROWS = 4;//number of rows in spritesheet
+    private static final int BMP_COLUMNS = 4;//number of columns
+    private int currentFrame = 0;//frame counter for animation, can be tweaked
+    private int srcX, srcY;//sprite positions
 
-    public Player(int x, int y, ID id, Handler handler) {
+    public Player(int x, int y, ID id, Handler handler, Bitmap bmp) {
         super(x, y, id);
         this.handler = handler;
-
+        this.bmp = bmp;
+        this.width = bmp.getWidth() / BMP_COLUMNS;
+        this.height = bmp.getHeight() / BMP_ROWS;
         // TODO Auto-generated constructor stub
     }
 
@@ -38,6 +48,8 @@ public class Player extends GameObject {
         if(x > Constants.SCREEN_WIDTH ) x = 0;//if traveling to the right end of the screen appear on the left end
         y = GamePanel.clamp(y, 50, Constants.SCREEN_HEIGHT-50);//cannot go beyond top and bottom border
         //handler.addObject(new Trail((int)x,(int)y,ID.Trail,.15f, handler));
+
+        //currentFrame = ++currentFrame % BMP_COLUMNS;//adding 1 to frame and finding the remainder after dividing by BMP_COLUMNS, MAX 4 FRAMES
 
         collision();
 
@@ -73,18 +85,44 @@ public class Player extends GameObject {
 
     @Override
     public void render(Canvas canvas) {
+
+        //int srcX = currentFrame * width;//use this for animation, experiment with it
+        srcX = 1 * width;//column of sprite
+        srcY = 0 * height;//row of sprite
+
+        if(velY < 0 ) {
+            srcX = 1 * width;//column of sprite
+            srcY = 0 * height;//row of sprite
+        }else if(velY > 0){
+            srcX = 3 * width;//column of sprite
+            srcY = 1 * height;//row of sprite
+        }else if(velX < 0){
+            srcX = 0 * width;//column of sprite
+            srcY = 1 * height;//row of sprite
+        }else if(velX > 0){
+            srcX = 3 * width;//column of sprite
+            srcY = 0 * height;//row of sprite
+        }
+
+
+
+        Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);//getting section of sprite image
+        Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
+        //position of rect
+
         //fill
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
-        canvas.drawRect(rect, paint);
+        //paint.setStyle(Paint.Style.FILL);
+        //paint.setColor(Color.WHITE);
+        //canvas.drawRect(rect, paint);
 
         //border
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.BLACK);
-        canvas.drawRect(rect, paint);
-
+        //paint.setStyle(Paint.Style.STROKE);
+        //paint.setColor(Color.BLACK);
+        //canvas.drawRect(rect, paint);
+        canvas.drawBitmap(bmp,src,dst, null);//read the documentation to understand
         //position middle of square
         rect.set((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
+
 
     }
 }
