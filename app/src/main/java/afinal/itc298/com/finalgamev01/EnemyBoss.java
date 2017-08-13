@@ -64,7 +64,7 @@ public class EnemyBoss extends GameObject {
             if(spawn == 0) handler.addObject(new EnemyBullet((int) x, (int) y, ID.EnemyBullet, handler));
         }
 
-        if(x <= 250 || x >= Constants.SCREEN_WIDTH-100) velX *= -1;//if object hits sides, reverse velocity
+        if(x <= 250 || x >= Constants.SCREEN_WIDTH-99) velX *= -1;//if object hits sides, reverse velocity
 
     }
 
