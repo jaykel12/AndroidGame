@@ -1,6 +1,8 @@
 package afinal.itc298.com.finalgamev01;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.util.Random;
 

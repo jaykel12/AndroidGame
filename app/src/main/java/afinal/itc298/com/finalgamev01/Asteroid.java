@@ -57,5 +57,8 @@ public class Asteroid extends GameObject {
         Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
 
         canvas.drawBitmap(bmp,src,dst, null);
+
+        rect.set((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
+
     }
 }
