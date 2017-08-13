@@ -15,7 +15,7 @@ import java.util.Random;
 public class Asteroid extends GameObject {
 
     Paint paint = new Paint();
-    Rect rect = new Rect(0,0,200,200);
+    Rect rect = new Rect(0,0,350,350);
     Handler handler;
     Random r = new Random();
     private Bitmap bmp;
@@ -39,12 +39,15 @@ public class Asteroid extends GameObject {
             case 0:
                 srcX = 0 * width;
                 srcY = 0 * height;
+                break;
             case 1:
                 srcX = 1 * width;
                 srcY = 0 * height;
+                break;
             case 2:
                 srcX = 2 * width;
                 srcY = 0 * height;
+                break;
         }
 
         GamePanel.clamp(velY, 0, 16);

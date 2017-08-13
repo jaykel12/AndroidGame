@@ -21,12 +21,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private  Spawn spawner;
     private Random r = new Random();
     public static boolean paused = false;
-    private Bitmap bmpPlayer;
-    private Bitmap bmpAsteroid;
-    private Bitmap bmpEnemyBoss;
-    private Bitmap bmpFastEnemy;
-    private Bitmap bmpFastEnemyLR;
-    private Bitmap bmpBasicEnemy;
+    public static Bitmap bmpPlayer;
+    public static Bitmap bmpAsteroid;
+    public static Bitmap bmpEnemyBoss;
+    public static Bitmap bmpFastEnemy;
+    public static Bitmap bmpFastEnemyLR;
+    public static Bitmap bmpBasicEnemy;
 
     //constructor
     public GamePanel(Context context){
@@ -64,7 +64,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));
 
         //set spawner
-        spawner = new Spawn(handler, hud, bmpAsteroid, bmpEnemyBoss, bmpFastEnemy, bmpFastEnemyLR, bmpBasicEnemy);
+        spawner = new Spawn(handler, hud);
 
 
         setFocusable(true);

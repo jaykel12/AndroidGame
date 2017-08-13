@@ -15,16 +15,16 @@ import java.util.Random;
 public class EnemyBoss extends GameObject {
 
     private Paint paint = new Paint();
-    private Rect rect = new Rect(0,0,250,250);
+    private Rect rect = new Rect(0,0,500,500);
     private Handler handler;
     private Bitmap bmp;
     Random r = new Random();
     private int width,height;
-    private static final int BMP_ROWS = 3;//number of rows in spritesheet
+    private static final int BMP_ROWS = 4;//number of rows in spritesheet
     private static final int BMP_COLUMNS = 4;//number of columns
     private int srcX, srcY;//sprite position
 
-    private int timer = 40;
+    private int timer = 45;
     private int timer2 = 50;
 
     public EnemyBoss(int x, int y, ID id, Handler handler, Bitmap bmp) {
@@ -64,7 +64,7 @@ public class EnemyBoss extends GameObject {
             if(spawn == 0) handler.addObject(new EnemyBullet((int) x, (int) y, ID.EnemyBullet, handler));
         }
 
-        if(x <= 126 || x >= Constants.SCREEN_WIDTH - 126) velX *= -1;//if object hits sides, reverse velocity
+        if(x <= 250 || x >= Constants.SCREEN_WIDTH-100) velX *= -1;//if object hits sides, reverse velocity
 
     }
 
