@@ -51,7 +51,7 @@ public class HUD {
             timer--;
             paint.setTextSize(100);//setting text size
 
-            if(level == 3 || level == 6){//if boss level
+            if(level == 3 || level == 6){//if enemies2 level
                 canvas.drawText("BOSS LEVEL", Constants.SCREEN_WIDTH / 2 - 250, Constants.SCREEN_HEIGHT / 3, paint);
             }else if(level == 9){
                 canvas.drawText("FINAL BOSS", Constants.SCREEN_WIDTH / 2 - 250, Constants.SCREEN_HEIGHT / 3, paint);

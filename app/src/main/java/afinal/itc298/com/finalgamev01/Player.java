@@ -104,8 +104,6 @@ public class Player extends GameObject {
             srcY = 0 * height;//row of sprite
         }
 
-
-
         Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);//getting section of sprite image
         Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
         //position of rect

@@ -20,8 +20,8 @@ public class EnemyBoss extends GameObject {
     private Bitmap bmp;
     Random r = new Random();
     private int width,height;
-    private static final int BMP_ROWS = 1;//number of rows in spritesheet
-    private static final int BMP_COLUMNS = 4;//number of columns
+    private static final int BMP_ROWS = 5;//number of rows in spritesheet
+    private static final int BMP_COLUMNS = 6;//number of columns
     private int srcX, srcY;//sprite position
 
     private int timer = 40;
@@ -61,7 +61,7 @@ public class EnemyBoss extends GameObject {
             velX = GamePanel.clamp(velX, -64, 64);
 
             int spawn = r.nextInt(3);
-            if(spawn == 0) handler.addObject(new EnemyBullet((int) x, (int) y, ID.EnemyBullet, handler));
+            if(spawn == 0) handler.addObject(new EnemyBullet((int) x, (int) y, ID.EnemyBullet, handler, GamePanel.bmpBullet));
         }
 
         if(x <= 126 || x >= Constants.SCREEN_WIDTH - 126) velX *= -1;//if object hits sides, reverse velocity
@@ -71,22 +71,8 @@ public class EnemyBoss extends GameObject {
     @Override
     public void render(Canvas canvas) {
 
-        srcX = 1 * width;//column of sprite
+        srcX = 0 * width;//column of sprite
         srcY = 0 * height;//row of sprite
-
-        if(velY < 0 ) {
-            srcX = 1 * width;//column of sprite
-            srcY = 0 * height;//row of sprite
-        }else if(velY > 0){
-            srcX = 3 * width;//column of sprite
-            srcY = 1 * height;//row of sprite
-        }else if(velX < 0){
-            srcX = 0 * width;//column of sprite
-            srcY = 1 * height;//row of sprite
-        }else if(velX > 0){
-            srcX = 3 * width;//column of sprite
-            srcY = 0 * height;//row of sprite
-        }
 
         Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);//getting section of sprite image
         Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
@@ -100,6 +86,6 @@ public class EnemyBoss extends GameObject {
 
 
         //sets position of rect, middle point is the center of rectangle
-        //rect.set((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
+        rect.set((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));
     }
 }
