@@ -24,9 +24,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public static Bitmap bmpPlayer;
     public static Bitmap bmpAsteroid;
     public static Bitmap bmpEnemyBoss;
+    public static Bitmap bmpEnemyBoss2;
+    public static Bitmap bmpEnemyBoss3;
     public static Bitmap bmpFastEnemy;
     public static Bitmap bmpFastEnemyLR;
     public static Bitmap bmpBasicEnemy;
+    public static Bitmap bmpEnemyBossMini;
+    public static Bitmap bmpSmartEnemy;
+    public static Bitmap bmpBullet;
+    public static Bitmap bmpBulletRandom;
+    public static Bitmap bmpBulletSmart;
+    public static Bitmap bmpBulletSpread;
 
     //constructor
     public GamePanel(Context context){
@@ -57,8 +65,25 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         bmpBasicEnemy = BitmapFactory.decodeResource(getResources(), R.drawable.enemies2);
 
-        //set enemy enemies2
-        bmpEnemyBoss = BitmapFactory.decodeResource(getResources(), R.drawable.enemies);
+        bmpSmartEnemy = BitmapFactory.decodeResource(getResources(), R.drawable.enemies);
+
+        //set enemy boss
+        bmpEnemyBoss = BitmapFactory.decodeResource(getResources(), R.drawable.boss2);
+
+        bmpEnemyBoss2 = BitmapFactory.decodeResource(getResources(), R.drawable.boss2);
+
+        bmpEnemyBoss3 = BitmapFactory.decodeResource(getResources(), R.drawable.boss2);
+
+        bmpEnemyBossMini = BitmapFactory.decodeResource(getResources(), R.drawable.enemies);
+
+        //set bullets
+        bmpBullet = BitmapFactory.decodeResource(getResources(), R.drawable.plasmaball);
+
+        bmpBulletRandom = BitmapFactory.decodeResource(getResources(), R.drawable.plasmaball);
+
+        bmpBulletSmart = BitmapFactory.decodeResource(getResources(), R.drawable.plasmaball);
+
+        bmpBulletSpread = BitmapFactory.decodeResource(getResources(), R.drawable.plasmaball);
 
         //set player movement listener
         this.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),handler));
@@ -100,11 +125,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
     public void tick(){//update game
-       if(paused == false) {
-           handler.tick();
-           spawner.tick();
-           hud.tick();
-       }
+        if(paused == false) {
+            handler.tick();
+            spawner.tick();
+            hud.tick();
+        }
 
     }
 
