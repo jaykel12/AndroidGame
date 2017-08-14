@@ -36,6 +36,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public static Bitmap bmpBulletSmart;
     public static Bitmap bmpBulletSpread;
 
+    private SoundPlayer soundPlayer;
+
     //constructor
     public GamePanel(Context context){
         super(context);
@@ -47,6 +49,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         handler = new Handler();
         hud = new HUD();
+
+        soundPlayer = new SoundPlayer(context);
 
         //add starfield
         for(int i = 0; i < 200; i++){

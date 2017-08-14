@@ -27,7 +27,7 @@ public class Asteroid extends GameObject {
     public Asteroid(int x, int y, ID id, Handler handler, Bitmap bmp) {
         super(x, y, id);
         this.handler = handler;
-        this.bmp = bmp; 
+        this.bmp = bmp;
         this.width = bmp.getWidth() / BMP_COLUMNS;
         this.height = bmp.getHeight() / BMP_ROWS;
         velX = 0;
