@@ -9,10 +9,13 @@ import android.media.MediaPlayer;
 
 public class SoundPlayer {
     public static MediaPlayer hitSound;
+    public static MediaPlayer healSound;
 
     public SoundPlayer(Context context){
 
         hitSound = MediaPlayer.create(context,R.raw.hit);
+        healSound = MediaPlayer.create(context,R.raw.heal_sound);
+
 
     }
 

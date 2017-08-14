@@ -25,7 +25,7 @@ public class Player extends GameObject {
     private static final int BMP_COLUMNS = 4;//number of columns
     private int currentFrame = 0;//frame counter for animation, can be tweaked
     private int srcX, srcY;//sprite positions
-    private int timer = 30;
+    private int timer = 13;
     private boolean hit = false;
     private boolean playing = false;
 
@@ -93,37 +93,39 @@ public class Player extends GameObject {
             if(!sound.hitSound.isPlaying()&& playing == false){//if playing do not play again
                 sound.hitSound.start();
                 playing = true;
-            }else playing = false;
+            }
 
 
-            if(this.timer == 29){
+            if(this.timer == 12){
                 srcX = 2 * width;//column of sprite
                 srcY = 0 * height;//row of sprite
             }
-            if(this.timer == 25){
+            if(this.timer == 10){
                 srcX = 3 * width;//column of sprite
                 srcY = 0 * height;//row of sprite
             }
-            if(this.timer == 20){
+            if(this.timer == 8){
                 srcX = 2 * width;//column of sprite
                 srcY = 1 * height;//row of sprite
             }
-            if(this.timer == 15){
+            if(this.timer == 6){
                 srcX = 1 * width;//column of sprite
                 srcY = 1 * height;//row of sprite
             }
-            if(this.timer == 10){
+            if(this.timer == 4){
                 srcX = 0 * width;//column of sprite
                 srcY = 1 * height;//row of sprite
             }
-            if(this.timer == 5){
+            if(this.timer == 2){
                 srcX = 0 * width;//column of sprite
                 srcY = 0 * height;//row of sprite
             }
             if(this.timer == 0) {
                 hit = false;
 
-                this.timer = 30;
+                playing = false;
+
+                this.timer = 14;
             }
         }
     }
@@ -149,6 +151,7 @@ public class Player extends GameObject {
                     }
                 }else if(getBounds().intersect(tempObject.getBounds()) && tempObject.getId() == ID.HPItem){
                     HUD.HEALTH+=15;
+                    sound.healSound.start();
                     handler.removeObject(tempObject);
                 }
             }
