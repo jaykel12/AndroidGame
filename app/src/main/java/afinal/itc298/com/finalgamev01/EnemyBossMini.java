@@ -24,7 +24,7 @@ public class EnemyBossMini extends GameObject {
     private static final int BMP_COLUMNS = 4;//number of columns
     private int srcX, srcY;//sprite position
 
-    private int timer = 10;
+    private int timer = 15;
     private int timer2 = 50;
 
     public EnemyBossMini(int x, int y, ID id, Handler handler, Bitmap bmp) {
