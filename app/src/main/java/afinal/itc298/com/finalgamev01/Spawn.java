@@ -40,7 +40,7 @@ public class Spawn {
 
         //spawn sequences of enemy at each level
         if(hud.getLevel() == 1) {//LEVEL ONE
-
+            sound.bgmSound.start();
             if(hud.getScoreKeep()>= 650) {
                 hud.setScoreKeep(0);
                 hud.setLevel(hud.getLevel() + 1);//sets the new level
@@ -113,6 +113,9 @@ public class Spawn {
                 hud.setLevel(hud.getLevel() + 1);//sets the new level
             }
             if(hud.getScoreKeep() == 1){
+                sound.bgmSound.stop();
+                sound.bossSound.setLooping(true);
+                sound.bossSound.start();
                 handler.clearEnemies();
             }
 
