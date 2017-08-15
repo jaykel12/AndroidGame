@@ -23,6 +23,8 @@ public class EnemyBulletRandom extends GameObject {
     private static final int BMP_ROWS = 4;//number of rows in spritesheet
     private static final int BMP_COLUMNS = 4;//number of columns
     private int srcX, srcY;//sprite position
+    private int currentFrame = 0;
+    private int nextFrame = 0;
 
     public EnemyBulletRandom(int x, int y, ID id, Handler handler, Bitmap bmp) {
         super(x, y, id);
@@ -35,6 +37,8 @@ public class EnemyBulletRandom extends GameObject {
 
         if(velX == 0) velX = 16;//no zero value, sets to 1 instead
         if(velY == 0) velY = 16;//no zero value,sets to 1 instead
+
+
 
     }
 
@@ -52,13 +56,19 @@ public class EnemyBulletRandom extends GameObject {
         if(y <= 0) handler.removeObject(this);
         if(y>= Constants.SCREEN_HEIGHT) handler.removeObject(this);
 
+        currentFrame = ++currentFrame % BMP_COLUMNS;//adding 1 to frame and finding the remainder after dividing by BMP_COLUMNS, MAX 4 FRAMES
+
+        if(currentFrame == 4){
+            nextFrame = ++nextFrame % BMP_ROWS;
+        }
+
     }
 
     @Override
     public void render(Canvas canvas) {
 
-        srcX = 1 * width;//column of sprite
-        srcY = 0 * height;//row of sprite
+        int srcX = currentFrame * width;
+        int srcY = nextFrame * height;
 
         Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);//getting section of sprite image
         Rect dst = new Rect((int)(x - rect.width()/2), (int)(y - rect.height()/2),(int)(x + rect.width()/2),(int)(y + rect.height()/2));

@@ -20,6 +20,7 @@ public class Spawn {
     private Random r = new Random();
     private int x = r.nextInt(Constants.SCREEN_WIDTH-60);
     private int y = r.nextInt(Constants.SCREEN_HEIGHT-60);
+    private SoundPlayer sound;
 
 
     public Spawn(Handler handler, HUD hud){
@@ -39,6 +40,7 @@ public class Spawn {
 
         //spawn sequences of enemy at each level
         if(hud.getLevel() == 1) {//LEVEL ONE
+            sound.bgmSound.start();
             if(hud.getScoreKeep()>= 650) {
                 hud.setScoreKeep(0);
                 hud.setLevel(hud.getLevel() + 1);//sets the new level
@@ -111,6 +113,9 @@ public class Spawn {
                 hud.setLevel(hud.getLevel() + 1);//sets the new level
             }
             if(hud.getScoreKeep() == 1){
+                sound.bgmSound.stop();
+                sound.bossSound.setLooping(true);
+                sound.bossSound.start();
                 handler.clearEnemies();
             }
 
