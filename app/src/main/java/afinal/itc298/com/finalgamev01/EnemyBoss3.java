@@ -20,7 +20,7 @@ public class EnemyBoss3 extends GameObject {
     private Bitmap bmp;
     Random r = new Random();
     private int width,height;
-    private static final int BMP_ROWS = 5;//number of rows in spritesheet
+    private static final int BMP_ROWS = 6;//number of rows in spritesheet
     private static final int BMP_COLUMNS = 6;//number of columns
     private int srcX, srcY;//sprite position
 
