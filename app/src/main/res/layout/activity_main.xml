@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="landscape"
     android:background="@drawable/background"
     >
 
@@ -46,16 +46,14 @@
         android:layout_alignLeft="@+id/buttonHelp"
         android:layout_alignStart="@+id/buttonHelp" />
 
-    <TextView
+   <TextView
         android:id="@+id/highScores"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginRight="21dp"
-        android:layout_marginEnd="21dp"
-        android:layout_alignTop="@+id/buttonStart"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/buttonQuit" />
+        android:layout_below="@+id/buttonQuit"
+        android:layout_alignLeft="@+id/buttonQuit"
+        android:layout_alignStart="@+id/buttonQuit"
+        android:layout_marginTop="19dp" />
 
 </RelativeLayout>
