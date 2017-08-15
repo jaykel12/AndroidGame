@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background"
-    >
+    android:orientation="horizontal"
+    tools:context="afinal.itc298.com.finalgamev01.MainActivity">
 
     <Button
         android:id="@+id/buttonStart"
@@ -13,47 +13,9 @@
         android:layout_height="wrap_content"
         android:alpha="0.6"
         android:text="Start"
-        android:onClick="Start"
+        android:onClick="startGame"
         android:textSize="30sp"
-        android:layout_marginTop="97dp"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/highScores"
-        android:layout_toStartOf="@+id/highScores"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp" />
-
-    <Button
-        android:id="@+id/buttonHelp"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:alpha="0.6"
-        android:text="Help"
-        android:onClick="Help"
-        android:textSize="30sp"
-        android:layout_below="@+id/buttonStart"
-        android:layout_alignLeft="@+id/buttonStart"
-        android:layout_alignStart="@+id/buttonStart" />
-
-    <Button
-        android:id="@+id/buttonQuit"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:alpha="0.6"
-        android:text="Quit"
-        android:onClick="Quit"
-        android:textSize="30sp"
-        android:layout_below="@+id/buttonHelp"
-        android:layout_alignLeft="@+id/buttonHelp"
-        android:layout_alignStart="@+id/buttonHelp" />
-
-   <TextView
-        android:id="@+id/highScores"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@+id/buttonQuit"
-        android:layout_alignLeft="@+id/buttonQuit"
-        android:layout_alignStart="@+id/buttonQuit"
-        android:layout_marginTop="19dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
