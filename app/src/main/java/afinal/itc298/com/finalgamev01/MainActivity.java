@@ -8,9 +8,17 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.content.Context;
+import android.widget.Button;
+import android.view.View.OnClickListener;
+import android.app.Dialog;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
+
+    final Context context = this;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +35,49 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        button = (Button) findViewById(R.id.buttonHelp);
 
+        // add button listener
+        button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
 
+                // custom dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.box);
+                dialog.setTitle("Help");
+
+                TextView text = (TextView) dialog.findViewById(R.id.text);
+                text.setText("Your mission should you choose to accept it is to fly your ship left, right, up or down through space" +
+                        " avoiding asteroids and interstellar enemies. " +
+                        "Evade your enemies for as long as possible to advance to new levels and improve your score! " +
+                        "Good luck space traveler!");
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the dialog box
+                dialogButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
     }
+
+
+
+
+
 
     public void startGame(View view){
         setContentView(new GamePanel(this));
     }
     public void quitGame(View view){finish();}
+
+
 
 
 
