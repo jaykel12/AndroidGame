@@ -46,7 +46,7 @@
         android:id="@+id/highScores"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         android:layout_below="@+id/buttonQuit"
         android:layout_alignLeft="@+id/buttonQuit"
         android:layout_alignStart="@+id/buttonQuit"
