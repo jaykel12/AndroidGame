@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.app.Dialog;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -67,6 +68,12 @@ public class MainActivity extends Activity {
         });
     }
 
+   // private void stopGame() {
+
+       // endGame(R.string.endGame);
+       // gameOver(false);
+       // return ;
+   // }
 
 
 
@@ -75,7 +82,9 @@ public class MainActivity extends Activity {
     public void startGame(View view){
         setContentView(new GamePanel(this));
     }
+   // public void endGame(View view){setContentView(new endGame(this));}
     public void quitGame(View view){finish();}
+
 
 
 
@@ -92,4 +101,9 @@ public class MainActivity extends Activity {
         super.onResume();
 
     }
+
+   // @Override
+   // private class endGame extends Handler{
+   //    
+    //}
 }
