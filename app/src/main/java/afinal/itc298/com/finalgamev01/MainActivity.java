@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+
 public class MainActivity extends Activity {
 
     @Override
@@ -26,11 +27,18 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+
+
     }
 
     public void startGame(View view){
         setContentView(new GamePanel(this));
     }
+    public void quitGame(View view){finish();}
+
+
+
+
     @Override
     protected void onPause(){
         super.onPause();
